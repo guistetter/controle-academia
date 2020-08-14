@@ -1,0 +1,28 @@
+{
+  "name": "controleacademia",
+  "version": "1.0.0",
+  "description": "just for fun! estudando fundamentos, Aplicaçao para controle de academia.",
+  "keywords": [
+    "Frontend",
+    "css-grid",
+    "nunjunks",
+    "node",
+    "express",
+    "video",
+    "galery",
+    "javascript"
+  ],
+  "author": "Guilherme Stetetter",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
