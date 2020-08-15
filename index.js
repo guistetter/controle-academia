@@ -4,7 +4,9 @@ const server = express()
 const PORT = process.env.PORT || 3000
 const routes = require('./routes/routes')
 
+server.use(express.urlencoded({extended:true}))
 server.use(routes)
+
 server.use(express.static("public"))
 server.set("view engine", "njk")
 nunjucks.configure('views',{
@@ -12,7 +14,6 @@ nunjucks.configure('views',{
   noCache: true,
   autoescape: false
 })
-
 
 
 server.listen(PORT, () => {
