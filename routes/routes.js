@@ -14,7 +14,13 @@ routes.get('/instructors/create',(req,res) => {
 })
 
 routes.post("/instructors",(req, res) => {
-  res.send(req.body)
+  //validacao dos campos
+ const keys = Object.keys(req.body)
+  for( key of keys){
+    if (req.body[key]== "")
+    return res.send("Preencha todos os campos")
+  }
+  return res.send(req.body)
 })
 
 routes.get('/members', function(req, res){
