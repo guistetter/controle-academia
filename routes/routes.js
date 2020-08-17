@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = express.Router()
+const instructors = require("../routes/instructors")
 
 routes.get('/', function(req, res) {
   return res.redirect('/instructors')
@@ -13,15 +14,7 @@ routes.get('/instructors/create',(req,res) => {
   res.render('instructors/create.njk')
 })
 
-routes.post("/instructors",(req, res) => {
-  //validacao dos campos
- const keys = Object.keys(req.body)
-  for( key of keys){
-    if (req.body[key]== "")
-    return res.send("Preencha todos os campos")
-  }
-  return res.send(req.body)
-})
+routes.post("/instructors",instructors.post)
 
 routes.get('/members', function(req, res){
   return res.send('members')
