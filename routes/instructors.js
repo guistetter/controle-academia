@@ -9,7 +9,9 @@ exports.show = function(req, res) {
     return instructor.id == id
  })
  if(!foundInstructor)return res.send('Instructor not found') 
- return res.send(foundInstructor)  
+ return res.render("instructors/show",{
+   instructor: foundInstructor
+ })  
 }
 
 //create
