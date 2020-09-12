@@ -17,15 +17,26 @@
       <div class="item">
         <div>Data de nascimento</div>
         <div>
-          <input type="date" name="birth" value="{{instructor.age}}">
+          <input type="date" name="birth" value="{{instructor.birth}}">
         </div>
       </div>
 
         <div class="item">
         <div>Sexo</div>
         <div>
-          <span><input type="radio" name="gender" value="m">Masculino</span>
-          <span><input type="radio" name="gender" value="f">Feminino</span>
+          <span>
+            <input 
+              type="radio" 
+              name="gender" 
+              value="m" 
+            {% if instructor.gender == 'm' %}
+              checked
+            {% endif %}>Masculino</span>
+
+          <span><input type="radio" name="gender" value="f"
+          {% if instructor.gender == 'f' %}
+            checked
+          {% endif %}>Feminino</span>
         </div>
       </div>
         <div class="item">
