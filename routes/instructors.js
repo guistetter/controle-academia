@@ -17,7 +17,7 @@ exports.show = function(req, res) {
    ...foundInstructor,
    age: age(foundInstructor.birth),
    services: foundInstructor.services.split(","),
-   created_at: moment(instructor.created_at).format("dd/MM/yyyy")
+   created_at: moment(foundInstructor.created_at).format("dd/MM/yyyy")
  }
 
  return res.render("instructors/show",{
