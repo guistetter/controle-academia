@@ -2,6 +2,14 @@ const fs = require('fs')
 const data = require("../data.json")
 const {age,date} = require("../utils")
 const moment = require("moment")
+
+//index tela principal
+exports.index = (req, res) =>{
+  res.render('instructors/index.njk',{
+    instructors: data.instructors
+  })
+}
+
 //show
 exports.show = function(req, res) {
  //req.params
