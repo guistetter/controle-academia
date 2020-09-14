@@ -19,6 +19,7 @@ exports.show = function(req, res) {
   .find(function(instructor){
     return instructor.id == id
  })
+
  if(!foundInstructor)return res.send('Instructor not found') 
 
  const instructor = {
@@ -96,14 +97,15 @@ exports.put = function(req, res){
  const instructor = {
   ...foundInstructor, 
   ...req.body,
-  birth: Date.parse(req.body.birth)
+  birth: Date.parse(req.body.birth),
+  id: Number(req.body.id)
  }
 
  data.instructors[index] = instructor
 
  fs.writeFile('data.json', JSON.stringify(data,null,2), function(err){
    if(err) return res.send("write error")
-   return res.redirect(`/instructors/${id}`)
+   return res.redirect(`/instructors/`)
  })
 
 }
