@@ -173,7 +173,7 @@ button[type="submit"],
 a.button{
   padding: 8px 32px;
   font-family: 'Roboto-Bold';
-  background-color:var(--color-green);
+  background-color:var(--primary-color);
   border-radius: 8px;
   margin-top: 32px;
   width: 100%;
@@ -185,4 +185,8 @@ a.button{
   text-align: center;
   text-decoration: none;
 
+}
+#form-delete button[type="submit"]{
+  margin-top: 8px;
+  background-color: lightcoral;
 }
