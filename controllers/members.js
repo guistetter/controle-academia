@@ -41,24 +41,24 @@ exports.post = (req, res) => {
     if (req.body[key]== "")
     return res.send("Preencha todos os campos")
   }
-  let {avatar_url, birth, name, services, gender} = req.body
 
-  birth = Date.parse(birth)
-  const created_at = Date.now()
-  const id = Number(data.members.length + 1)
+  birth = Date.parse(req.body.birth)
+  
+  let id = 1
+  const lastMember = data.members[data.members.length - 1]
+
+  if(lastMember){
+    id = lastMember.id + 1
+  }
   
   data.members.push({
-    avatar_url, 
-    birth, 
-    created_at, 
-    id, 
-    name, 
-    services, 
-    gender
+    id,
+    ...req.body,
+    birth
   })
   fs.writeFile("data.json", JSON.stringify(data, null, 3), function(err){  
     if(err) return res.send('Write file Error')
-    return res.redirect("/members")
+    return res.redirect(`/members/${id}`)
   })
 
   //return res.send(req.body)
