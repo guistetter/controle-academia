@@ -10,9 +10,7 @@ exports.index = (req, res) =>{
   })
 }
 
-//show
 exports.show = function(req, res) {
- //req.params
  const { id } = req.params
  
  const foundInstructor = data.instructors
@@ -34,7 +32,10 @@ exports.show = function(req, res) {
  })  
 }
 
-//create
+exports.create = (req,res) => {
+  res.render('instructors/create.njk')
+}
+
 exports.post = (req, res) => {
   //validacao dos campos
  const keys = Object.keys(req.body)
@@ -61,11 +62,9 @@ exports.post = (req, res) => {
     if(err) return res.send('Write file Error')
     return res.redirect("/instructors")
   })
-
   //return res.send(req.body)
 }
 
-//edit
 exports.edit = (req, res) => {
   const { id } = req.params
   
@@ -105,12 +104,11 @@ exports.put = function(req, res){
 
  fs.writeFile('data.json', JSON.stringify(data,null,2), function(err){
    if(err) return res.send("write error")
-   return res.redirect(`/instructors/${edit}`)
+   return res.redirect(`/instructors/${id}`)
  })
 
 }
 
-//delete
 exports.delete = function(req,res){
   const {id} = req.body
   const filteredInstructors = data.instructors.filter(instructor => {

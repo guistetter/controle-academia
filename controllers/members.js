@@ -10,7 +10,6 @@ exports.index = (req, res) =>{
   })
 }
 
-//show
 exports.show = function(req, res) {
  //req.params
  const { id } = req.params
@@ -31,7 +30,10 @@ exports.show = function(req, res) {
  })  
 }
 
-//create
+exports.create = (req,res) => {
+  res.render('members/create.njk')
+}
+
 exports.post = (req, res) => {
   //validacao dos campos
  const keys = Object.keys(req.body)
@@ -62,7 +64,6 @@ exports.post = (req, res) => {
   //return res.send(req.body)
 }
 
-//edit
 exports.edit = (req, res) => {
   const { id } = req.params
   
@@ -78,7 +79,6 @@ exports.edit = (req, res) => {
  //return yyy-mm-dd
   return res.render('members/edit', {member})
 }
-
 exports.put = function(req, res){
   const { id } = req.body
   let index = 0
@@ -107,7 +107,6 @@ exports.put = function(req, res){
 
 }
 
-//delete
 exports.delete = function(req,res){
   const {id} = req.body
   const filteredMembers = data.members.filter(member => {
