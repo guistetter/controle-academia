@@ -24,6 +24,7 @@ exports.show = function(req, res) {
  const member = {
    ...foundMember,
    age: age(foundMember.birth),
+   birth: moment(foundMember.birth).format('DD/MM/yyyy')
  }
  return res.render("members/show",{
    member
