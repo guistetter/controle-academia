@@ -20,14 +20,20 @@ module.exports = {
         return res.send("Preencha todos os campos")
       }
     }
-    
+
     Instructor.create(req.body, function(instructor){
       return res.redirect(`/instructors/${instructor.id}`)
     })
   },
 
   show(req,res){
-   return
+   Instructor.find(req.params.id, function(instructor){
+    if(!instructor)return res.send('instructor not found!')
+    instructor.age = age(instructor.birth)
+    instructor.services = instructor.services.split(",")
+    instructor.created_at = moment(instructor.created_at).format("DD-MM-yyyy")
+    return res.render("instructors/show",{instructor})
+    })
   },
   edit(req,res){
     return
