@@ -103,7 +103,7 @@ exports.put = function(req, res){
 
  fs.writeFile('data.json', JSON.stringify(data,null,2), function(err){
    if(err) return res.send("write error")
-   return res.redirect(`/members/${edit}`)
+   return res.redirect(`/members/`)
  })
 
 }
