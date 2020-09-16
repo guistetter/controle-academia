@@ -4,7 +4,7 @@ const moment = require("moment")
 module.exports = {
   all(callback){
     db.query(`select * from instructors`, function(err, results){
-      if(err) return res.send("database error")
+      if(err) throw "database error!"
       callback(results.rows)
     })
   },
@@ -29,20 +29,38 @@ module.exports = {
       moment(Date.now()).format("yyyy-MM-DD")
     ] 
     db.query(query, values, function(err, results){
-      if(err){ 
-        console.log(err)
-        return res.send('Database Error!')
-      }else{
-        console.log('sem erro de banco')
-      }
+      if(err) throw "database error!"
       callback(results.rows[0])
     })
   },
   find(id, callback){
     db.query(`select * from instructors where id = $1`,[id], 
     function(err, results){
-      if(err) return res.send("database error!")
+      if(err) throw "database error!"
       callback(results.rows[0])
+    })
+  },
+  update(data, callback){
+    const query = `
+    update instructors set 
+      avatar_url=($1),
+      name=($2),
+      birth=($3),
+      gender=($4),
+      services=($5)
+    where id = $6
+    `
+    const values = [
+      data.avatar_url,
+      data.name,
+      moment(data.birth).format("yyyy-MM-DD"),
+      data.gender, 
+      data.services,
+      data.id
+    ]
+    db.query(query, values, function(err, results){
+      if(err) throw "database error!"
+      callback()
     })
   }
 }
