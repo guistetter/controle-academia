@@ -1,12 +1,12 @@
 const nunjucks = require('nunjucks')
+const methodOverride = require('method-override')
 const express = require("express")
 const server = express()
-const methodOverride = require('method-override')
 const PORT = process.env.PORT || 3000
 const routes = require('./routes/routes')
 
-server.use(express.urlencoded({extended:true}))
 server.use(methodOverride('_method'))
+server.use(express.urlencoded({extended:true}))
 server.use(routes)
 
 
