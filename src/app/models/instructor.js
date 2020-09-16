@@ -1,10 +1,11 @@
 const db = require("../../config/db")
 const moment = require("moment")
+const { Instructor } = require("../controllers/instructors")
 
 module.exports = {
   all(callback){
     db.query(`select * from instructors`, function(err, results){
-      if(err) throw "database error!"
+      if(err) throw `database error!, ${err}`
       callback(results.rows)
     })
   },
@@ -61,6 +62,13 @@ module.exports = {
     db.query(query, values, function(err, results){
       if(err) throw "database error!"
       callback()
+    })
+  },
+  delete(id, callback){
+    db.query(`delete from instructors where id = $1`,[id], 
+    function(err, results){
+      if(err) throw `Database Error! ${err}`
+      return callback()
     })
   }
 }
