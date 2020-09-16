@@ -3,7 +3,11 @@ const {age,date} = require("../../lib/utils")
 const db = require("../../config/db")
 module.exports = {
   index(req,res){
-    res.render('instructors/index.njk')
+    //pagina home
+    db.query(`select * from instructors`, function(err, results){
+      if(err) return res.send("database error")
+      return res.render("instructors/index.njk", {instructors: results.rows})
+    })
   },
   create(req,res){
     res.render('instructors/create.njk')
