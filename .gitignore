@@ -1,6 +1,6 @@
 node_modules
 package-lock.json
 fundamentos.txt
-
+.env
 npm install browser-sync faz reload do html tipo o nodemon
 npm-run-all roda varios servicoes ao mesmo tempo
