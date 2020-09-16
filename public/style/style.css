@@ -151,7 +151,7 @@ header{
 }
 
 /*form */
-input{
+input, select{
   width: 100%;
   outline: none;
   color: #555;
@@ -196,13 +196,13 @@ a.button{
   padding: 40px;
   box-sizing: border-box;
 }
-.table-container table{
+ table{
   border-spacing: 0;
 }
-.table-container thead tr th{
+ thead tr th{
   text-align: left;
 }
-.table-container td,th{
+ td,th{
   padding: 16px;
   border-bottom: 1px solid #d9d9d9;
 }
@@ -211,13 +211,13 @@ th{
   color: #777;
   font-size: 14px;
 }
-.table-container tbody tr:last-child td{
+ tbody tr:last-child td{
   border-bottom: none;
 }
 
 tbody tr td:first-child span{
   display: grid;
-  grid-template-columns: 6dw4px 1fr;
+  grid-template-columns: 64px 1fr;
   align-items: center;
 }
 
@@ -245,7 +245,7 @@ tbody tr td:last-child a,
   display: inline-block;
 }
 
-.table-container thead tr th:last-child,
+thead tr th:last-child,
 td:last-child{
   text-align: center;
 }
