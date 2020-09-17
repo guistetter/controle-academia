@@ -4,7 +4,7 @@ const { Instructor } = require("../controllers/instructors")
 
 module.exports = {
   all(callback){
-    db.query(`select * from instructors`, function(err, results){
+    db.query(`select * from instructors order by name asc`, function(err, results){
       if(err) throw `database error!, ${err}`
       callback(results.rows)
     })

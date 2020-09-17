@@ -3,7 +3,7 @@ const moment = require("moment")
 
 module.exports = {
   all(callback){
-    db.query(`select * from members`, function(err, results){
+    db.query(`select * from members order by name asc`, function(err, results){
       if(err) throw `database error!, ${err}`
       callback(results.rows)
     })
