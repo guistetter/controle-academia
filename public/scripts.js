@@ -1,14 +1,4 @@
-// const modalOverlay = document.querySelector('.modal-overlay');
-// const cards = document.querySelectorAll('.card');
-
-// for(let card of cards){
-//   card.addEventListener("click", function(e){
-//     const videoId = card.getAttribute('id')
-//     window.location.href= `/video?id=${videoId}`
-//   })
-// }
 const currentPage = location.pathname
-// console.log(currentPage)
 const menuItems = document.querySelectorAll("header .links a")
 
 for(item of menuItems){
@@ -16,4 +6,20 @@ for(item of menuItems){
     item.classList.add("active")
   }
 }
-console.log("/instructors/2".includes("3"))
+
+let totalPages = 20, 
+  selectedPage = 15, 
+  pages = []
+
+for(let currentPage = 1; currentPage <= totalPages; currentPage++){
+
+  const firstAndLastPage = currentPage == 1 || currentPage == totalPages
+  const pagesAfterSelectedPage = selectedPage <= selectedPage + 2
+  const pagesBeforeSelectedPage = currentPage >= selectedPage - 2
+
+  if(firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage){
+    pages.push(currentPage)
+  }
+}
+
+console.log(pages)
