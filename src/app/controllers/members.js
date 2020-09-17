@@ -9,7 +9,9 @@ module.exports = {
     })
   },
   create(req,res){
-    res.render('members/create.njk')
+    Member.instructorsSelectOptions(function(options){
+      res.render('members/create.njk',{instructorOptions: options})
+    })
   },
   post(req,res){
     //validacao dos campos
@@ -38,7 +40,10 @@ module.exports = {
     Member.find(req.params.id, function(member){
       if(!member)return res.send('member not found!')
       member.birth = moment(member.birth).format("yyyy-MM-DD")
-      return res.render("members/edit",{member})
+
+      Member.instructorsSelectOptions(function(options){
+        res.render('members/edit.njk',{member, instructorOptions: options})
+      })
       })
   },
   put(req,res){
