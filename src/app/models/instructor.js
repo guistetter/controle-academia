@@ -97,12 +97,11 @@ module.exports = {
     select instructors.*, count(members) as total_students
     from instructors
     left join members on (instructors.id = members.instructor_id)
-
     `
     if( filter ){
       query = `${query} 
-      where instructors.name ilike '%${filter}%
-      or instructors.services ilike '%${filter}%
+      where instructors.name ilike '%${filter}%' 
+      or instructors.services ilike '%${filter}%'
       `
     }
     query = `${query}
