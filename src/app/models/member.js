@@ -18,8 +18,9 @@ module.exports = {
         birth,
         blood,
         weight,
-        height
-      ) values ($1, $2, $3, $4, $5, $6, $7,$8)
+        height,
+        instructor_id
+      ) values ($1, $2, $3, $4, $5, $6, $7,$8, $9)
       returning id
     `
     const values = [
@@ -30,7 +31,8 @@ module.exports = {
       moment(data.birth).format("yyyy-MM-DD"),
       data.blood,
       data.weight,
-      data.height
+      data.height,
+      data.instructor
     ] 
     db.query(query, values, function(err, results){
       if(err) throw `database error!, ${err}`
@@ -54,8 +56,9 @@ module.exports = {
       email=($5),
       blood=($6),
       weight=($7),
-      height=($8)
-    where id = $9
+      height=($8),
+      instructor_id=($9)
+    where id = $10
     `
     const values = [
       data.avatar_url,
@@ -66,6 +69,7 @@ module.exports = {
       data.blood,
       data.weight,
       data.height,
+      data.instructor,
       data.id
     ]
     db.query(query, values, function(err, results){
@@ -78,6 +82,12 @@ module.exports = {
     function(err, results){
       if(err) throw `Database Error! ${err}`
       return callback()
+    })
+  },
+  instructorsSelectOptions(callback){
+    db.query(`select name, id from instructors`, function(err,results){
+      if(err) throw 'Database error aqui model'
+      callback(results.rows)
     })
   }
 }
