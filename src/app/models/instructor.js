@@ -90,5 +90,28 @@ module.exports = {
       if(err) throw `Database Error! ${err}`
       return callback()
     })
+  },
+  paginate(params){
+    const {filter, limit, offset, callback} = params
+    let query = `
+    select instructors.*, count(members) as total_students
+    from instructors
+    left join members on (instructors.id = members.instructor_id)
+
+    `
+    if( filter ){
+      query = `${query} 
+      where instructors.name ilike '%${filter}%
+      or instructors.services ilike '%${filter}%
+      `
+    }
+    query = `${query}
+    group by instructors.id
+    limit $1 offset $2
+    `
+    db.query(query, [limit, offset], function(err, results){
+      if(err) throw 'Database Error!'
+      callback(results.rows)
+    })
   }
 }
