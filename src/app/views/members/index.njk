@@ -2,12 +2,12 @@
 {% block content %}
   <div class="card table-container">  
     <div class="header">
-      <a class="button" href="/instructors/create">Novo</a>
-      <form action="/instructors" method="get">
+      <a class="button" href="/members/create">Novo</a>
+      <form action="/members" method="get">
         <input 
         type="text" 
         name="filter" 
-        placeholder="Filtrar instrutor ou serviço"
+        placeholder="Nome ou email"
         value={{filter}}
         >
         <button type="submit">Filtrar</button>
