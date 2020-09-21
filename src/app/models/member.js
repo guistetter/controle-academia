@@ -93,5 +93,38 @@ module.exports = {
       if(err) throw 'Database error aqui model'
       callback(results.rows)
     })
+  },
+  paginate(params){
+    const {filter, limit, offset, callback} = params
+
+    let query = "",
+    filterQuery = "",
+    totalQuery = `(
+      select count(*) from members
+     ) as total
+    `
+    if ( filter ){
+
+      filterQuery = `
+      where members.name ilike '%${filter}%' 
+      or members.email ilike '%${filter}%'
+      `
+      totalQuery = `(
+        select count(*) from members
+        ${filterQuery}
+      ) as total`
+    }
+    
+    query = `
+    select members.*, ${totalQuery}
+    from members
+    ${filterQuery}
+    limit $1 offset $2
+    `
+
+    db.query(query, [limit, offset], function(err, results){
+      if(err) throw 'Database Error!'
+      callback(results.rows)
+    })
   }
 }
